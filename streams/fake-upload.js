@@ -6,7 +6,7 @@ class OneToHundredStream extends Readable {
   _read() {
     const i = this.index++;
     setTimeout(() => {
-      if (i > 100) {
+      if (i > 10) {
         this.push(null);
       } else {
         const buffer = Buffer.from(String(i));
@@ -16,4 +16,6 @@ class OneToHundredStream extends Readable {
   }
 }
 
-axios.post('http://localhost:3334', new OneToHundredStream());
+axios.post('http://localhost:3334', new OneToHundredStream()).then((response) => {
+  console.log(response.data);
+});
